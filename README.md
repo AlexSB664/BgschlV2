@@ -7,5 +7,7 @@ Plataform web for students
 we recommend use virtual environment for django
 
 #You must be install mysqlclient in pip3 for the connection MySQL with django
+
 #Command
+
 pip3 install django mysqlclient

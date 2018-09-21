@@ -1,5 +1,6 @@
 # BgschlV2
 Plataform web for students
+
 #the project are developed using Django with MySQL by Demostradoras Inc. Team
 
 #requisites

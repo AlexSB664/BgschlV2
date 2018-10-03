@@ -62,3 +62,17 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.email
+
+class Administrador(models.Model):
+    nombre = models.CharField(max_length=65)
+    apellidos = models.CharField(max_length = 130)
+    email = models.OneToOneField(User, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.nombre
+    
+    class Meta:
+        
+        permissions = (
+            ('is_admin', 'Is_Admin'),
+        )

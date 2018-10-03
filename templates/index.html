@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block title %}Inicio - Bienvenido{% endblock %}
+{% block content %}
+{% include "menuanonymus.html" %}
+
+
+<div id="index-banner" class="parallax-container">
+	<div class="section no-pad-bot">
+		<div class="container">
+        	<br><br>
+        	<h1 class="header center blue-text text-lighten-1">Bienvenido a IMJUV</h1>
+        		<div class="row center">
+          		<h5 class="header blue-text col s12 ">Un portal laboral para estudiantes y egresados recientemente</h5>
+        		</div>
+        		<div class="row center">
+          		<a href="{% url 'singupAlumno' %}" id="download-button" class="btn-large waves-effect waves-light blue lighten-1">Registrate</a>
+        		</div>
+        		<br><br>
+
+      	</div>
+   	</div>
+ 	<div class="parallax"><img src="media/board.jpg" alt="Unsplashed background img 1">
+ 	</div>
+ </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center blue-text"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">Herramienta eficiente</h5>
+
+            <p class="light">Este portal brinda una interfaz util para los estudiantes que deseen realizar sus practicas profesionales, residencia o conseguir trabajo.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center blue-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">Conoce Empresas</h5>
+
+            <p class="light">Por medio de este portal se pueden conocer las diferentes empresas que buscan estudiantes para su contratacion, y las aptitudes que requiere cubrir dicho puesto.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center blue-text"><i class="material-icons">settings</i></h2>
+            <h5 class="center">Facil de Usar</h5>
+
+            <p class="light">Esta util interfaz le ayudara de manera facil y rapida la manera en que pueda buscar algun puesto de su agrado para su contratacion rapida.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light">Un Portal util para estudiante universitarios.</h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="media/wood2.jpg" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4>Contactanos</h4>
+          <p class="left-align light">Ten la confianza de ponerte en contacto con nuestros administradores para obtener mas informacion acerca de los procesos que se llevan a cabo en la seleccion de los aspirates.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 ">Adquiere tu primera oportunidad laboral en nuestro portal</h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="media/brick.jpg" alt="Unsplashed background img 3"></div>
+  </div>
+{% endblock %}

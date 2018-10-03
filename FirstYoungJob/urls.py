@@ -15,7 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url,include
+from django.contrib.auth.views import logout_then_login
+import alumno.views
+#para las fotos
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^$',alumno.views.Index, name='index'),
+    url(r'^singup',alumno.views.SingUp.as_view(), name='singupAlumno'),
 ]
+#para las fotos
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    import debug_toolbar
+    urlpatterns = [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns

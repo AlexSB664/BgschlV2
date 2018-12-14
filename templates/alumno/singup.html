@@ -1,60 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script>
-        var check = function() {
-        if (document.getElementById('password1').value == document.getElementById('password2').value) {
-            document.getElementById('message').style.color = 'green';
-            document.getElementById('message').innerHTML = 'coincide';
-            document.getElementById("registrar").disabled = false;
-            } else {
-            document.getElementById('message').style.color = 'red';
-            document.getElementById('message').innerHTML = 'no coincide';
-            document.getElementById("registrar").disabled = true;
-            }
-        }
-    </script>
+{% extends 'base.html' %}
+{% block title %}Inicio - Bienvenido{% endblock %}
 {% load staticfiles %}
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="icon" href="media/home.ico">
-  <title>Bolsa de Trabajo Estudiantil</title>
-
-  <!-- CSS  -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
-</head>
-<body>
-   <h1 class="header center blue-text text-lighten-1">Ingresa tus datos correctamente</h1>
-        <div class="row center">
-        </div>
- 
+{% block archivos %}<link href="{% static 'css/singup.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+<script src="{% static 'js/singup.js' %}"></script>
+<style type="text/css">/* Chart.js */
+@-webkit-keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}@keyframes chartjs-render-animation{from{opacity:0.99}to{opacity:1}}.chartjs-render-monitor{-webkit-animation:chartjs-render-animation 0.001s;animation:chartjs-render-animation 0.001s;}</style>
+{% endblock %}
+{% block content %}
+{% include "menuanonymus.html" %}
 
 
-  <div class="container">
-    <div class="section">
+<div class="container body-content" style="margin-top: 100px;">
+        <main role="main">
+            
 
-      <!--   Icon Section   -->
-      <div class="list">
 
-     
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center blue-text"><i class="material-icons">accessibility</i></h2>
-            <h5 class="center">Alumno</h5>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-<div class="row">
-    <form class="col s12" method="POST">
-    {% csrf_token %}
-
-    {% if form.errors %}
+<div class="container">
+    <div class="login-form col-md-12 offset-md-0" style="border-radius:3%;">
+        <h2 class="panel-title text-center">Registrate</h2>
+        <hr>
+        <h4 color="royalblue" class="text-center">Alumno</h4>
+        <h2 class="center blue-text"><i class="material-icons md-96">account_circle</i></h2>
+        <div class="tab-content">
+            <div id="singup" class="container tab-pane  active show" style="border-top:1px solid #2196f3; border-bottom:1px solid #2196f3; border-left:1px solid #2196f3; border-right:1px solid #2196f3;">
+                <br>
+            <form action="" method="post">
+                    {% csrf_token %}
+                    <div>
+                        {% if form.errors %}
         {% for field in form %}
             {% for error in field.errors %}
                 <div class="alert alert-danger">
@@ -68,100 +41,48 @@
             </div>
         {% endfor %}
     {% endif %}
-    
-
-    {% for field in form %}
-
-      <div class="form-inline form-group">
-    {% if field.name == 'password1' %}
-    <div class="row">
-        <div class="input-field col s12">
-          <input id="password1" name="{{field.name}}" class="validate" type="password" onkeyup='check();' required />
-          <label for="{{ field.name }}">Contraseña:</label>
-        </div>
-    </div>
-
-    {% elif field.name == 'password2' %}
-    <div class="row">
-        <div class="input-field col s12">
-          <input id="password2" name="{{field.name}}" class="validate" type="password" onkeyup='check();' required />
-          <label for="{{ field.name }}">Confirmar Contraseña:</label>
-          <span id='message'></span>
-        </div>
-    </div>
-    {% elif field.name == 'email' %}
-    <div class="row">
-        <div class="input-field col s12">
-          <input id="{{field.name}}" name="{{field.name}}" class="validate" type="email" required />
-          <label for="{{ field.name }}">Correo Electronico:</label>
-        </div>
-    </div>
-    {% else %}
-   <div class="row">
-        <div class="input-field col s12">
-          <input id="{{field.name}}" name="{{field.name}}"  type="text" class="validate" required />
-          <label for="{{ field.name }}">{{ field.name }}:</label>
-        </div>
-    </div>
-
-    {% endif %}
-    </div>
-    {% endfor %}
-      <div class="form-group ">
-          <div class="d-flex justify-content-around">
-            <button id="registrar" class="btn btn-success" type="submit">Registrar</button>
-            <button class="btn btn-danger" type="reset">Limpiar campos</button>
-          </div>
-    </div>
-</form>
+                        <label></label>
+                        
+                        <div class="form-group">
  
 
+     <!--  Scripts{{ form }}-->
 
-  <!--  Scripts-->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="{% static 'js/materialize.js' %}"></script>
-<script src="{% static 'js/init.js' %}"></script>
-
-  </body>
-</html>
-<!--
-<form class="mt-3 container form-horizontal" method="POST">
-{% csrf_token %}
-
-{% if form.errors %}
-    {% for field in form %}
-        {% for error in field.errors %}
-            <div class="alert alert-danger">
-                <strong>{{ error|escape }}</strong>
-            </div>
-        {% endfor %}
-    {% endfor %}
-    {% for error in form.non_field_errors %}
-        <div class="alert alert-danger">
-            <strong>{{ error|escape }}</strong>
+   {{form}}
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <button type="submit" color="royalblue" class="btn btn-primary waves-effect waves-light">Registrar</button>
+                            </div>
+                        </div>
+                    </div>
+            </form>            </div>
         </div>
-    {% endfor %}
-{% endif %}
-    
-    {% for field in form %}
-      <div class="form-inline form-group">
-    {% if field.name == 'password1' %}
-    <label class="text-right justify-content-end control-label col-sm-2" for="{{ field.name }}">Contraseña:</label>
-          <input class="form-control col-sm-10" type="password" id="{{field.id}}" name="{{field.name}}" required />
-    {% elif field.name == 'password2' %}
-    <label class="text-right justify-content-end control-label col-sm-2" for="{{ field.name }}">Confirmar contraseña:</label>
-          <input class="form-control col-sm-10" type="password" id="{{field.id}}" name="{{field.name}}" required />
-    {% else %}
-    <label class="text-right justify-content-end control-label col-sm-2" for="{{ field.name }}">{{ field.label }}</label>
-          <input class="form-control col-sm-10" id="{{field.id}}" name="{{field.name}}" required />
-    {% endif %}
     </div>
-    {% endfor %}
-      <div class="form-group ">
-          <div class="d-flex justify-content-around">
-            <button class="btn btn-success" type="submit">Registrar</button>
-            <button class="btn btn-danger" type="reset">Limpiar campos</button>
-          </div>
+</div>
+
+        </main>
     </div>
-</form>
--->
+
+<script>
+  $(function () {
+    $('#Singup a[href="#login"]').tab('show') // Select tab by name
+    $('#Singup a[href="#singup"]').tab('show') // Select tab by name
+  })
+
+  $('#Singup a').on('click', function (e) {
+  e.preventDefault()
+  alert('aqui cayo')
+  $(this).tab('show')
+  $('#Singup a[href="#login"]').tab('show') // Select tab by name
+  $('#Singup a[href="#singup"]').tab('show') // Select tab by name
+})
+</script>
+
+<script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+  </script>
+
+
+{% endblock %}

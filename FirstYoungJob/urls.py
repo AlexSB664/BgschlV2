@@ -18,6 +18,7 @@ from django.urls import path
 from django.conf.urls import url,include
 from django.contrib.auth.views import logout_then_login
 import alumno.views
+import administrador.views
 #para las fotos
 from django.conf import settings
 from django.conf.urls.static import static
@@ -27,6 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$',alumno.views.Index, name='index'),
     url(r'^singup',alumno.views.SingUp.as_view(), name='singupAlumno'),
+    url(r'^Demostradores',administrador.views.demostradores, name='demostradores'),
 ]
 #para las fotos
 if settings.DEBUG:

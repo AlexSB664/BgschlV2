@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+from datetime import datetime    
 from django.contrib.auth.models import BaseUserManager
 
 
@@ -38,6 +40,15 @@ from django.utils.translation import ugettext_lazy as _
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True, null=True)
+    nombre = models.CharField(max_length=65, null=True)
+    apellido_paterno = models.CharField(max_length=65,null=True)
+    apellido_materno = models.CharField(max_length=65,null=True)
+    fecha_nacimiento = models.DateTimeField(null=True)
+    genero = models.CharField(max_length=65,null=True)
+    foto_perfil = models.ImageField(upload_to='profiles',null=True)
+    verificado = models.BooleanField(default=False)
+    agregado = models.DateTimeField(default=datetime.now, blank=True)
+    
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,
@@ -64,15 +75,22 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 class Administrador(models.Model):
-    nombre = models.CharField(max_length=65)
-    apellidos = models.CharField(max_length = 130)
     email = models.OneToOneField(User, on_delete=models.CASCADE)
+    agregado = models.DateTimeField(default=datetime.now, blank=True)
     
     def __str__(self):
-        return self.nombre
+        return self.email.nombre
     
     class Meta:
         
         permissions = (
             ('is_admin', 'Is_Admin'),
         )
+class Publicaciones(models.Model):
+    admin = models.ForeignKey(Administrador, on_delete=models.CASCADE, blank=True, null=True,related_name="publicaciones")
+    fecha = models.DateTimeField(default=datetime.now, blank=True)
+    contenido = models.TextField(null=True)
+    foto = models.ImageField(upload_to='publicaciones',null=True)
+
+    def __str__(self):
+        return str(self.id+self.admin+self.fecha)
